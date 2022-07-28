@@ -23,6 +23,19 @@ gitlab에서 사용하는 포트는 3가지로, 443-https , 80:http, 22:ssh가 �
 ``` 
 docker run -e VIRTUAL_HOST=docs.niceamc.co.kr --expose 82 --detach --hostname 10.115.224.210 --publish 8442:443 --publish 82:80 --publish 822:22 --name gitlab_docs --restart always --volume /srv/gitlab/config:/etc/gitlab_docs --volume /srv/gitlab/logs:/var/log/gitlab_docs --volume /srv/gitlab/data:/var/opt/gitlab_docs gitlab/gitlab-ce:latest
 ```
+- 구축 후 초기 비밀번호 생성
+```
+> docker exec -it [container_id] /bin/bash
+
+# gitlab-rails console -e production
+
+> user = User.where(id: 1).first
+
+> user.password='변경할비밀번호'
+> user.password_confirmation='변경할비밀번호'
+
+user.save -> 8자리 이상 설정이 되어야 true 반환 -> 12345678 로 설정 완료
+```
 #
 - docker 진행 시 자주 사용하는 명령
 ```
@@ -36,3 +49,4 @@ docker service restart -> 재시작
 - [참고한 자료1. 설치 코드, 삭제] (https://jaynamm.tistory.com/entry/Install-Docker-Engine-on-CentOS7-centos7-%EB%8F%84%EC%BB%A4-%EC%84%A4%EC%B9%98)
 - [참고한 자료2. 설치코드 구글링 참고자료] (https://1mini2.tistory.com/21)
 - [docker 개념] (https://myjamong.tistory.com/297)
+- [깃랩 초기 비번 생성 참고자료] : (https://oingdaddy.tistory.com/369)
