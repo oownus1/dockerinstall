@@ -46,6 +46,14 @@ docker service restart -> 재시작
 
 
 
+
+- 새로 docs.niceamc.co.kr 사내 매뉴얼 깃랩 구축을 위해 docker에 하나 더 깃랩 이미지를 올린 명령입니다
+```
+docker run -it --detach --name py.niceamc.co.kr --hostname py.niceamc.co.kr --expose 81 --network nginx-proxy -e VIRTUAL_HOST=py.niceamc.co.kr -e VIRTUAL_HOST=py.niceamc.co.kr gitlab/gitlab-ce
+
+docker run -it --detach --name docs.niceamc.co.kr --hostname docs.niceamc.co.kr --expose 82 --network nginx-proxy -e VIRTUAL_HOST=docs.niceamc.co.kr -e VIRTUAL_HOST=docs.niceamc.co.kr gitlab/gitlab-ce
+```
+
 - [참고한 자료1. 설치 코드, 삭제] (https://jaynamm.tistory.com/entry/Install-Docker-Engine-on-CentOS7-centos7-%EB%8F%84%EC%BB%A4-%EC%84%A4%EC%B9%98)
 - [참고한 자료2. 설치코드 구글링 참고자료] (https://1mini2.tistory.com/21)
 - [docker 개념] (https://myjamong.tistory.com/297)
