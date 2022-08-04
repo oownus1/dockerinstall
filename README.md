@@ -61,6 +61,16 @@ docker run -it --detach --name docs.niceamc.co.kr --hostname docs.niceamc.co.kr 
 -> 이렇게 두개를 docker에서 gitlab/gitlab-ce 이미지를 docker hub 에서 pull 해와 두가지를 올린 과정입니다. 
 -> 먼저 py.niceamc.co.kr 도커 이미지가 먼저 올라와있었는데 docs.niceamc.co.kr 이미지를 올리는 과정에서 기존의 이미지가 없어지는 사고가 발생하였습니다.
 
+원인 : 이미지는 여러개 올릴 수 있는데 과정에서 포트 충돌이 원인이었습니다. 
+      포트 80 http를 사용하여 py.niceamc.co.kr 도메인에 접속하고 있었는데 80으로 또다시 docs.niceamc.co.kr을 올림으로써 포트 충돌이 일어난 것이 원인이 되었습니다.
+      1개의 포트는 1개의 서비스를 담당해줍니다.
+      
+      이러한 부분을 해결하기 위해 nginx-proxy를 사용하기로 해주었습니다.
+      nginxproxy/nginx-proxy 이미지를 불러와 이를 80번 포트로 서비스해주었습니다. 
+      이 nginx-proxy는 포트 분배를 해준다고 생각하면 쉽게 개념이 다가옵니다. 
+      즉 위 수행한 명령에서 볼 수 있듯이 --network nginx-proxy 명령을 추가하면서 이 명령으로 인해 py.niceamc.co.kr은 81번 포트로, docs.niceamc.co.kr 은 82번 포트로 nginx-
+      proxy가 지정을 해주어서 분배가 되어 두 사이트가 충돌없이 서비스 될 수 있습니다.
+
 ```
 
 - [참고한 자료1. 설치 코드, 삭제] (https://jaynamm.tistory.com/entry/Install-Docker-Engine-on-CentOS7-centos7-%EB%8F%84%EC%BB%A4-%EC%84%A4%EC%B9%98)
