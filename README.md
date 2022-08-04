@@ -50,8 +50,17 @@ docker service restart -> 재시작
 - 새로 docs.niceamc.co.kr 사내 매뉴얼 깃랩 구축을 위해 docker에 하나 더 깃랩 이미지를 올린 명령입니다
 ```
 docker run -it --detach --name py.niceamc.co.kr --hostname py.niceamc.co.kr --expose 81 --network nginx-proxy -e VIRTUAL_HOST=py.niceamc.co.kr -e VIRTUAL_HOST=py.niceamc.co.kr gitlab/gitlab-ce
+-> 이 명령으로 올라간 py.niceamc.co.kr 은 사내에서 접속 시 파이썬 교육자료들이 있으며 파이썬 교육을 들을 수 있는 페이지입니다.
+-> 페이지 도메인을 py.niceamc.co.kr 로 지정하여 올렸습니다. 
+
 
 docker run -it --detach --name docs.niceamc.co.kr --hostname docs.niceamc.co.kr --expose 82 --network nginx-proxy -e VIRTUAL_HOST=docs.niceamc.co.kr -e VIRTUAL_HOST=docs.niceamc.co.kr gitlab/gitlab-ce
+-> 이 명령으로 올라간 docs.niceamc.co.kr 은 앞으로 제작하게 될 사내 개발, 전산 매뉴얼 페이지입니다.
+-> 페이지 도메인을 docs.niceamc.co.kr 로 지정하여 올렸습니다.
+
+-> 이렇게 두개를 docker에서 gitlab/gitlab-ce 이미지를 docker hub 에서 pull 해와 두가지를 올린 과정입니다. 
+-> 먼저 py.niceamc.co.kr 도커 이미지가 먼저 올라와있었는데 docs.niceamc.co.kr 이미지를 올리는 과정에서 기존의 이미지가 없어지는 사고가 발생하였습니다.
+
 ```
 
 - [참고한 자료1. 설치 코드, 삭제] (https://jaynamm.tistory.com/entry/Install-Docker-Engine-on-CentOS7-centos7-%EB%8F%84%EC%BB%A4-%EC%84%A4%EC%B9%98)
