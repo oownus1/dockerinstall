@@ -73,6 +73,19 @@ docker run -it --detach --name docs.niceamc.co.kr --hostname docs.niceamc.co.kr 
 
 ```
 
+```
+* Ubuntu 18.04 환경에서 docker 설치 수행 명령
+
+sudo apt-get update
+sudo apt-get install -y apt-transport-https ca-certificates curl software-properties-common
+curl -fsSL https://download.docker.com/linux/ununtu/gpg | sudo apt-key add -
+sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu bionic stable"
+sudo apt-get update
+sudo apt-get install docker-ce
+
+다음 명령어들로 docker 설치 완료하였습니다.
+```
+
 - [참고한 자료1. 설치 코드, 삭제] (https://jaynamm.tistory.com/entry/Install-Docker-Engine-on-CentOS7-centos7-%EB%8F%84%EC%BB%A4-%EC%84%A4%EC%B9%98)
 - [참고한 자료2. 설치코드 구글링 참고자료] (https://1mini2.tistory.com/21)
 - [docker 개념] (https://myjamong.tistory.com/297)
