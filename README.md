@@ -72,7 +72,7 @@ docker run -it --detach --name docs.niceamc.co.kr --hostname docs.niceamc.co.kr 
       proxy가 지정을 해주어서 분배가 되어 두 사이트가 충돌없이 서비스 될 수 있습니다.
 
 ```
-
+#Ubuntu 관련 설치 명령 기록 
 ```
 * Ubuntu 18.04 환경에서 docker 설치 수행 명령
 
@@ -85,7 +85,17 @@ sudo apt-get install docker-ce
 
 다음 명령어들로 docker 설치 완료하였습니다.
 ```
+```
+* Ubuntu 18.04 환경에 원격으로 붙기 위한 vnc 설치 과정
+- vnc란
 
+sudo apt update  #업데이트
+sudo apt install xfce4 xfce4-goodies xorg dbus-x11 x11-xserver-utils #우분투 리포지토리로 사용할 수 있는 데스크톱 환경인 Xfce 설치
+sudo apt install tigervnc-standalone-server tigervnc-common   #다양한 vnc 중에서 tigerVNC 서버 설치
+
+
+다음 명령어들로 vnc 설치 완료하였습니다. (이후 원격으로 붙을 수 있었습니다)
+```
 - [참고한 자료1. 설치 코드, 삭제] (https://jaynamm.tistory.com/entry/Install-Docker-Engine-on-CentOS7-centos7-%EB%8F%84%EC%BB%A4-%EC%84%A4%EC%B9%98)
 - [참고한 자료2. 설치코드 구글링 참고자료] (https://1mini2.tistory.com/21)
 - [docker 개념] (https://myjamong.tistory.com/297)
