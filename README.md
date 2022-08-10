@@ -102,8 +102,11 @@ nano ~/.vnc/xstartup   # Xfce를 사용하도록 TigerVNC를 구성하기 위한
 #!/bin/sh
 unset SESSION_MANAGER
 unset DBUS_SESSION_BUS_ADDRESS
-exec startxfce4 
-
+exec startxfce4
+여기 이후 실패 .. 사용자 계정 및 루트 계정과 systemd관련 파일 active가 fail로 되는 문제 등.. 다양한 시행착오 발생 
+중단 후 아래 방법으로 
+```
+```
 이렇게 작성 수행중에 무언가가 제대로 수행이 되지 않아서 중단!
 다른방법으로 수행하였습니다.
 성공방법 -> [참고한 문서 ununtu18.04에서 vnc server 설치] : (https://z-wony.tistory.com/19)
@@ -113,6 +116,7 @@ sudo apt-get install tigervnc-standalone-server tigervnc-xorg-extension  #사용
 vncpasswd  #비밀번호 설정(꼼수2122!) 와 n 입력 무조건
 sudo nano ~/.vnc/xstartup  #xstartup 작성
 
+다음 내용으로 작성
 #!/bin/sh
 # Start Gnome 3 Desktop 
 [ -x /etc/vnc/xstartup ] && exec /etc/vnc/xstartup
@@ -120,6 +124,13 @@ sudo nano ~/.vnc/xstartup  #xstartup 작성
 vncconfig -iconic &
 dbus-launch --exit-with-session gnome-session &
 
+저장 후 
+vncserver -localhost no #서버실행
+vncserver -list #명령으로 잘 수행되고 있는지 확인
+
+UltraVNC Viewer를 내 PC윈도우에 설치 후 
+위의 vncserver -list 로 확인한 명령의 DISPLAY 뒤의 숫자를 590X 의 X자리에 포트로 붙여서 접속
+우분투 서버 ip인 172.28.4.244:5903 으로 접속 완료
 
 다음 명령어들로 vnc 설치 완료하였습니다. (이후 원격으로 붙을 수 있었습니다)
 ```
