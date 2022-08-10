@@ -104,6 +104,21 @@ unset SESSION_MANAGER
 unset DBUS_SESSION_BUS_ADDRESS
 exec startxfce4 
 
+이렇게 작성 수행중에 무언가가 제대로 수행이 되지 않아서 중단!
+다른방법으로 수행하였습니다.
+성공방법 -> [참고한 문서 ununtu18.04에서 vnc server 설치] : (https://z-wony.tistory.com/19)
+Putty로 우분투 cli환경에 접속하여 root 계정으로 수행 -> 일반 사용자 계정으로는 systemd파일을 만들 수 없었다.
+[성공수행 명령]
+sudo apt-get install tigervnc-standalone-server tigervnc-xorg-extension  #사용한 TigerVNC서버 설치 
+vncpasswd  #비밀번호 설정(꼼수2122!) 와 n 입력 무조건
+sudo nano ~/.vnc/xstartup  #xstartup 작성
+
+#!/bin/sh
+# Start Gnome 3 Desktop 
+[ -x /etc/vnc/xstartup ] && exec /etc/vnc/xstartup
+[ -r $HOME/.Xresources ] && xrdb $HOME/.Xresources
+vncconfig -iconic &
+dbus-launch --exit-with-session gnome-session &
 
 
 다음 명령어들로 vnc 설치 완료하였습니다. (이후 원격으로 붙을 수 있었습니다)
