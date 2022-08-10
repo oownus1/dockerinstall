@@ -86,16 +86,54 @@ sudo apt-get install docker-ce
 다음 명령어들로 docker 설치 완료하였습니다.
 ```
 ```
-* Ubuntu 18.04 환경에 원격으로 붙기 위한 vnc 설치 과정
-- vnc란
+* Ubuntu 18.04 환경에 원격으로 붙기 위한 vnc 설치 과정(일반사용자 계정niceadmin으로 루트위치에서 수행)
+
+- vnc란? VNC는 Virtual Network Computing 데스크톱 시스템을 원격으로 공유하기 위한 프로토콜 집합으로 TigerVNC, TightVNC, Vino, vnc4server 등을 포함하여 Linux 기반 데스크탑에 원격으로 액세스하는 데 사용할 수 있는 소프트웨어가 많이 있다.
+우리는 그 중 TigerVNC를 설치하여 사용할 것이다. TigerVNC는 Linux 기반 데스크탑 시스템을 원격으로 제어하거나 액세스하는 데 사용되는 무료 오픈 소스 고성능 VNC 서버로 원격 시스템의 그래픽 응용 프로그램과 상호 작용할 수 있는 클라이언트/서버 응용 프로그램이다.
 
 sudo apt update  #업데이트
 sudo apt install xfce4 xfce4-goodies xorg dbus-x11 x11-xserver-utils #우분투 리포지토리로 사용할 수 있는 데스크톱 환경인 Xfce 설치
 sudo apt install tigervnc-standalone-server tigervnc-common   #다양한 vnc 중에서 tigerVNC 서버 설치
+vncserver  # 암호 설정 부분이 나옵니다(꼼수2122!로 설정) -> n으로 대답해주어야함(이유 : 보기 전용 암호로 설정할지 여부를 묻는 메시지가 표시되는데 보기 전용 암호를 설정하도록 선택하면 사용자가 마우스 및 키보드를 사용하여 VNC 인스턴스와 상호 작용할 수 없다.여기서 나는 섣부르게 y를 설정하였다가 vnspasswd 를 쳐서 다시 비번을 치고 n으로 설치하였다.(시행착오))
+vncserver -kill :1   #위 암호를 설치하면 호스트 이름 뒤에 :1이 있는데 이는 vnc서버가 실행 중인 디스플레이 포트 번호를 나타낸다.이 부분에 대한 내용은 아래에 따로 설명을 추가하겠습니다. 
+nano ~/.vnc/xstartup   # Xfce를 사용하도록 TigerVNC를 구성하기 위한 파일을 만들기 ~/.vnc/xstartup
+
+파일안에서 다음과 같은 내용 추가 
+#!/bin/sh
+unset SESSION_MANAGER
+unset DBUS_SESSION_BUS_ADDRESS
+exec startxfce4 
+
 
 
 다음 명령어들로 vnc 설치 완료하였습니다. (이후 원격으로 붙을 수 있었습니다)
 ```
+```
+# You will require a password to access your desktops.
+# 
+# Password:
+# Verify:
+# Would you like to enter a view-only password (y/n)? n
+# /usr/bin/xauth:  file /home/linuxize/.Xauthority does not exist
+# 
+# New 'server2.linuxize.com:1 (linuxize)' desktop at :1 on machine server2.linuxize.com
+# 
+# Starting applications specified in /etc/X11/Xvnc-session
+# Log file is /home/linuxize/.vnc/server2.linuxize.com:1.log
+# 
+# Use xtigervncviewer -SecurityTypes VncAuth -passwd /home/linuxize/.vnc/passwd :1 to connect to the VNC server.
+ 
+
+vncserver 명령을 처음 실행하면 암호 파일이 생성되어 ~/.vnc에 저장됩니다. 이 디렉토리는 존재하지 않는 경우 작성됩니다. 
+위의 출력에서 호스트 이름 뒤에 :1이 있습니다. vnc 서버가 실행 중인 디스플레이 포트 번호를 나타냅니다. 이 경우 서버는 TCP 포트 5901(5900+1)에서 실행되고 있습니다. vncserver를 사용하여 두 번째 인스턴스를 생성하면 다음 사용 가능한 포트에서 실행됩니다. 즉, :2는 서버가 포트 5902(5900+2)에서 실행 중임을 의미합니다. 
+명심해야 할 점은 VNC 서버와 작업할 때 :X는 5900+X를 참조하는 디스플레이 포트입니다
+다음 단계를 계속하기 전에 -kill 옵션이 포함된 vncserver 명령과 서버 번호를 인수로 사용하여 VNC 인스턴스를 중지합니다. 이 예에서는 서버가 포트 5901(:1)에서 실행 중이므로 다음을 사용하여 중지합니다.
+ 
+- 위의 vncserver -kill :1 명령에 대한 설명 
+- [vnc 설치 참고] : (https://jjeongil.tistory.com/1332)
+```
+
+
 - [참고한 자료1. 설치 코드, 삭제] (https://jaynamm.tistory.com/entry/Install-Docker-Engine-on-CentOS7-centos7-%EB%8F%84%EC%BB%A4-%EC%84%A4%EC%B9%98)
 - [참고한 자료2. 설치코드 구글링 참고자료] (https://1mini2.tistory.com/21)
 - [docker 개념] (https://myjamong.tistory.com/297)
