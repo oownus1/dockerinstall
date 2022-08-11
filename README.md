@@ -164,3 +164,4 @@ vncserver 명령을 처음 실행하면 암호 파일이 생성되어 ~/.vnc에 
 - [참고한 자료2. 설치코드 구글링 참고자료] (https://1mini2.tistory.com/21)
 - [docker 개념] (https://myjamong.tistory.com/297)
 - [깃랩 초기 비번 생성 참고자료] : (https://oingdaddy.tistory.com/369)
+- [docker study] : (https://unpasoadelante.tistory.com/193?category=901931)
