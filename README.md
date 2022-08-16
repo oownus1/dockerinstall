@@ -196,7 +196,7 @@ vncserver 명령을 처음 실행하면 암호 파일이 생성되어 ~/.vnc에 
 - jupyter notebook --ip 0.0.0.0 --allow-root #다음 명령으로 띄어준다. 그러면 동작이 되는데 이렇게 한 후 나의 인터넷망에서 url검색하는 부분에 http://우분투ip:8888/tree 로 접속하면 우분투 환경에 있는 jupyter 서버에 접속할 수 있다
 - 실행할 때마다 upyter notebook --ip 0.0.0.0 --allow-root 이를 해준 후 인터넷 망에서 위 url을 입력하여 접속한다. 
 - 이렇게 하여서 Docker에 원격 주피터 서버 Container로 띄워보는 테스트를 마무리하였다.
-```
+
 
 
 - [설치 참고1] : (https://soundprovider.tistory.com/entry/DockerJupyter-%EC%9B%90%EA%B2%A9-%EC%A3%BC%ED%94%BC%ED%84%B0-%EC%84%9C%EB%B2%84-Container%EB%A1%9C-%EB%9D%84%EC%9A%B0%EA%B8%B0)
