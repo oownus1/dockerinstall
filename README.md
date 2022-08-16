@@ -165,6 +165,8 @@ vncserver 명령을 처음 실행하면 암호 파일이 생성되어 ~/.vnc에 
 - 우분투 OS위에 docker 설치 후 외부 인터넷망에서 접속할 수 있도록 jupyter notebook 서버 구축 테스트(8월 16일 수행)
 ```
 [사용한 명령어]
+- (pip install --upgrade pip)
+- (pip install jupyter)
 - service docker start #설치 완료한 docker 시작
 - docker run -d -it --name remote_jupyter -p 8888:8888 --mount type=bind,source=/home/user/Documents,target=/root python:3.7.3 #컨테이너 생성
 - docker start remote_jupyter  
@@ -193,6 +195,7 @@ vncserver 명령을 처음 실행하면 암호 파일이 생성되어 ~/.vnc에 
 - c.NotebookApp.password_required=True
 - c.NotebookApp.port=8888
 # 빠져나와서 
+- jupyter notebook --ip=우분투ip(비밀)
 - jupyter notebook --ip 0.0.0.0 --allow-root #다음 명령으로 띄어준다. 그러면 동작이 되는데 이렇게 한 후 나의 인터넷망에서 url검색하는 부분에 http://우분투ip:8888/tree 로 접속하면 우분투 환경에 있는 jupyter 서버에 접속할 수 있다
 - 실행할 때마다 upyter notebook --ip 0.0.0.0 --allow-root 이를 해준 후 인터넷 망에서 위 url을 입력하여 접속한다. 
 - 이렇게 하여서 Docker에 원격 주피터 서버 Container로 띄워보는 테스트를 마무리하였다.
