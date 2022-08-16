@@ -160,6 +160,48 @@ vncserver 명령을 처음 실행하면 암호 파일이 생성되어 ~/.vnc에 
 ```
 
 
+
+
+- 우분투 OS위에 docker 설치 후 외부 인터넷망에서 접속할 수 있도록 jupyter notebook 서버 구축 테스트(8월 16일 수행)
+```
+[사용한 명령어]
+- service docker start #설치 완료한 docker 시작
+- docker run -d -it --name remote_jupyter -p 8888:8888 --mount type=bind,source=/home/user/Documents,target=/root python:3.7.3 #컨테이너 생성
+- docker start remote_jupyter  
+- docker exec -it remote_jupyter /bin/bash # Container가 생성되면 바로 윗줄 명령과 이 명령으로 exec으로 접속해야 한다. attach로 접속하면 python 환경으로 들어가진다.(컨테이너 접속한 부분)
+- pip install --upgrade pip
+- pip install jupyter # 컨테이너 접속 후 우분투 설치
+- jupyter notebook --generate-config -y #config 생성하는 부분 -> 서버를 띄우기 위해 인증정보를 생성해야 한다. config 파일은 생성 시 안내되는 폴더에 저장된다.(e.g. /root/.jupyter/jupyter_notebook_config.py) -> cd 명령으로 이 내용을 편집하기 위해서 이동하는 과정이 있다.
+- ipython # 우선 ipython 실행 -> ipython으로 인증정보를 생성을 위해서
+- # ipython 환경 실행해서 아래 절차 예시로 수행(생성되는 아래 토큰 부분은 따로 복사하여 저장해두어야함 -> 아래는 예시 토큰이다)
+- In [1] :from notebook.auth import passwd
+- In [2]: passwd()
+- >>>> Enter password:
+- >>>> Verify password:
+- ### 이 부분 따로 복사해두어야 함
+- Out[2]:  'argon2:$argon2id$v=19$m=10240,t=10,p=8$PLyCJPwzphBgN9jEthOcKw$HKjo9Clr7BCIKd7OhchspA' 
+- In [3]: quit()
+- # 과정 마무리 하고 나와서 config.py 파일을 편집한다(아래)
+- apt-get update #업데이트 한번 수행해준다. 
+- apt-get install nano #파일 편집을 위하여 다음 nano가 설치가 안되어있다면 설치진행
+- nano /root/.jupyter/jupyter_notebook_config.py # 다음 경로에 있는 경로로 cd를 사용하여 이동 후 config 파일 열기
+- # 아래 6줄을 상단에 내용을 입력해준다. 입력후 ctrl+S => y => ctrl+x로 나온다
+- c=get_config()
+- c.NotebookApp.ip='localhost'
+- c.NotebookApp.open_browser=False
+- c.NotebookApp.password='argon2:$argon2 ...... chspA'
+- c.NotebookApp.password_required=True
+- c.NotebookApp.port=8888
+# 빠져나와서 
+- jupyter notebook --ip 0.0.0.0 --allow-root #다음 명령으로 띄어준다. 그러면 동작이 되는데 이렇게 한 후 나의 인터넷망에서 url검색하는 부분에 http://우분투ip:8888/tree 로 접속하면 우분투 환경에 있는 jupyter 서버에 접속할 수 있다
+- 실행할 때마다 upyter notebook --ip 0.0.0.0 --allow-root 이를 해준 후 인터넷 망에서 위 url을 입력하여 접속한다. 
+- 이렇게 하여서 Docker에 원격 주피터 서버 Container로 띄워보는 테스트를 마무리하였다.
+```
+
+
+- [설치 참고1] : (https://soundprovider.tistory.com/entry/DockerJupyter-%EC%9B%90%EA%B2%A9-%EC%A3%BC%ED%94%BC%ED%84%B0-%EC%84%9C%EB%B2%84-Container%EB%A1%9C-%EB%9D%84%EC%9A%B0%EA%B8%B0)
+```
+
 - [참고한 자료1. 설치 코드, 삭제] (https://jaynamm.tistory.com/entry/Install-Docker-Engine-on-CentOS7-centos7-%EB%8F%84%EC%BB%A4-%EC%84%A4%EC%B9%98)
 - [참고한 자료2. 설치코드 구글링 참고자료] (https://1mini2.tistory.com/21)
 - [docker 개념] (https://myjamong.tistory.com/297)
