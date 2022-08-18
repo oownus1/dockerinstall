@@ -205,6 +205,38 @@ vncserver 명령을 처음 실행하면 암호 파일이 생성되어 ~/.vnc에 
 - [설치 참고1] : (https://soundprovider.tistory.com/entry/DockerJupyter-%EC%9B%90%EA%B2%A9-%EC%A3%BC%ED%94%BC%ED%84%B0-%EC%84%9C%EB%B2%84-Container%EB%A1%9C-%EB%9D%84%EC%9A%B0%EA%B8%B0)
 ```
 
+- 2022 8월 18일 기록
+- 현재 맡아 하고 있는 업무부분을 기록합니다
+```
+STT 기술조사 및 RPA 활용방안에 대한 진행현황을 공유드립니다.
+감사합니다.
+
+담당 : 박선우 주임
+
+STT 테스트	AICC pororo 구축
+[7월말 시작 ~ 8월 12일]	
+
+환경구성 중
+ - 우분투 환경에서 텍스트 관련 테스트까지 완료상태
+ - 음성 테스트를 위한 wav2letter 라이브러리 설치 시도 중
+  (STT테스트는 미수행)
+
+테스트 준비
+ - STT 테스트 샘플 생성
+(아나운서 대본예시를 보고 자리에서 전화기로 간단하게 녹음하여 wav파일을 제작)
+RPA 테스트	업무자동화 테스트 과제 선정
+
+
+
+그룹 RPA 관련 접속 오류(시간 소요)
+ - 학습 후 적용가능한 과제를 선정하려 했으나, 임시 보류
+
+대체 > 파이썬을 활용한 업무자동화 준비 중
+ - 일일점검 업무와 같은 단순 반복, 간단한 업무를 선정하여 자동화 및 시각화 케이스 취합
+  → 다음 단계는 대기 중(docker 이미지 구축 테스트 진행 후)
+  → 자동화 과제 프로그래밍 진행 예정
+  ```
+  
 - [참고한 자료1. 설치 코드, 삭제] (https://jaynamm.tistory.com/entry/Install-Docker-Engine-on-CentOS7-centos7-%EB%8F%84%EC%BB%A4-%EC%84%A4%EC%B9%98)
 - [참고한 자료2. 설치코드 구글링 참고자료] (https://1mini2.tistory.com/21)
 - [docker 개념] (https://myjamong.tistory.com/297)
