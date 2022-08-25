@@ -236,6 +236,48 @@ STT 기술조사 및 RPA 활용방안에 대한 진행현황을 공유드립니�
   → 자동화 과제 프로그래밍 진행 예정
   ```
   
+  - 도커 위에 구축한 pycaret용 쥬피터 노트북 한글 지원 
+  ```
+  - 그래프의 한글이 지원이 안되는 현상 해결 
+  https://bagng.tistory.com/159
+  
+ - 우분투에서 작업을 진행하는 것이 아닌 우분투에서 도커 이미지서버로 접속했어야했다.
+ 
+ 
+#Docker Container 만들기
+#command line에서 다음과 같이 실행합니다.
+docker run -it -p 8888:8888 --name "container name" -e LANG=ko_KR.UTF-8 pycaret/full
+ 
+#Container를 만들었으면 한글 패키지를 설치합니다.
+docker start "container name"
+docker exec -it "container name" /bin/bash
+
+[호스트 우분투가 아니라 위의 docekr exec -it --user roon 컨테이너id /bin/bash
+ 위 명령으로 컨테이너로 접속하여 이곳에서 위의 사이트 참고하여 한글 지원 진행] 
+apt-get update
+apt-get install locales
+locale-gen ko_KR.UTF-8
+locale -a
+ 
+#한글 폰트와 vi 입력기를 설치합니다.
+apt-get install -y fonts-nanum fonts-nanum*
+apt-get install vim
+
+#서울 Timezone도 설치합니다.
+apt install tzdata
+tzselect
+
+#4: Asia
+#23: Korea (South)
+#Asia/Seoul
+
+ln -sf /usr/share/zoneinfo/Asia/Seoul /etc/localtime
+
+그래프 한글 문제 해결
+```
+  
+  
+  
 - [참고한 자료1. 설치 코드, 삭제] (https://jaynamm.tistory.com/entry/Install-Docker-Engine-on-CentOS7-centos7-%EB%8F%84%EC%BB%A4-%EC%84%A4%EC%B9%98)
 - [참고한 자료2. 설치코드 구글링 참고자료] (https://1mini2.tistory.com/21)
 - [docker 개념] (https://myjamong.tistory.com/297)
