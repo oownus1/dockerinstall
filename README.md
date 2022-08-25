@@ -273,7 +273,7 @@ tzselect
 
 ln -sf /usr/share/zoneinfo/Asia/Seoul /etc/localtime
 
-그래프 한글 문제 해결
+그래프 한글 문제 해결 완료
 ```
   
   
