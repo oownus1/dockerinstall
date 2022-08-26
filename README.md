@@ -278,6 +278,70 @@ ln -sf /usr/share/zoneinfo/Asia/Seoul /etc/localtime
   
   
   
+ 
+- 파이썬 업무 자동화 
+```
+- 쥬피터 노트북에서 수행
+- 팀장님 일일 점검 파이썬 업무 자동화 테스트 진행하였습니다.
+
+!python -m pip install paramiko  # ssh접속을 위한 필요 라이브러리 paramiko 설치 (쥬피터 노트북에서 수행)
+
+
+import paramiko
+ssh=paramiko.SSHClient()
+ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
+ssh.connect('10.115.226.50', port='22', username='otadmin', password='admin00!!')  # 일일 작업 서버 정보 받아서 입력 
+stdin, stdout, stderr = ssh.exec_command('df -h')  # 이 서버에서 일일 작업하는 명령어인 df -h 수행
+print(''.join(stdout.readlines()))
+ssh.close()
+
+# 위 명령 수행을 위해 방화벽 및 문서중앙화를 열어주셨습니다 (정책으로 인해)
+# 위 명령 결과 
+Filesystem               Size  Used Avail Use% Mounted on
+devtmpfs                 7.8G     0  7.8G   0% /dev
+tmpfs                    7.8G     0  7.8G   0% /dev/shm
+tmpfs                    7.8G  201M  7.6G   3% /run
+tmpfs                    7.8G     0  7.8G   0% /sys/fs/cgroup
+/dev/mapper/centos-root   47G   12G   36G  26% /
+/dev/sda1               1014M  151M  864M  15% /boot
+tmpfs                    1.6G     0  1.6G   0% /run/user/1005
+tmpfs                    1.6G     0  1.6G   0% /run/user/1000
+tmpfs                    1.6G     0  1.6G   0% /run/user/1004
+
+
+
+
+import paramiko
+ssh=paramiko.SSHClient()
+ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
+ssh.connect('172.28.220.38', port='22', username='otadmin', password='admin00!!')
+stdin, stdout, stderr = ssh.exec_command('bdf')
+print(''.join(stdout.readlines()))
+ssh.close()    # 다음 명령도 수행
+
+# 위 명령 결과 
+Filesystem          kbytes    used   avail %used Mounted on
+/dev/vg00/lvol4    31457280 15132160 16197584   48% /
+/dev/vg00/lvol1    2097152  156240 1925848    8% /stand
+/dev/vg00/lvol6    8388608 5810442 2417323   71% /var
+/dev/vg00/lvol7    16777216   17128 16629160    0% /var/adm/crash
+/dev/vg10/lvol3    30736384 11827966 17728309   40% /userLog
+/dev/vg10/lvol2    30736384 7665811 21629111   26% /oracle
+/dev/vg00/lvol5    10485760 7934688 2531152   76% /opt
+/dev/vg10/lvol4    30605312 21502387 8560465   72% /nsr
+/dev/vg10/lvol1    51216384 48204973 2842619   94% /ics
+ 
+
+# 다음과 같이 파이썬 일일점검 업무 자동화를 위한 테스트를 진행하였습니다.
+# 사내 정책으로 인해 위와 같이 코딩하였을 때 [WinError 10060] 연결된 구성원으로부터 응답이 없어 연결하지 못했거나, 호스트로부터 응답이 없어 연결이 끊어졌습니다 
+# 위 같은 오류가 나타났습니다. 팀장님께 말씀드려 문서중앙화, 방화벽 정책을 테스트를 위해 열어주셔서 테스트 결과가 잘 출력되었습니다.
+
+- [참고한 자료2. paramiko를 이용한 ssh접속 후 명령어 실행] (https://zero-gravity.tistory.com/324)
+
+
+``` 
+  
+  
 - [참고한 자료1. 설치 코드, 삭제] (https://jaynamm.tistory.com/entry/Install-Docker-Engine-on-CentOS7-centos7-%EB%8F%84%EC%BB%A4-%EC%84%A4%EC%B9%98)
 - [참고한 자료2. 설치코드 구글링 참고자료] (https://1mini2.tistory.com/21)
 - [docker 개념] (https://myjamong.tistory.com/297)
