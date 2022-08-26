@@ -252,7 +252,7 @@ docker run -it -p 8888:8888 --name "container name" -e LANG=ko_KR.UTF-8 pycaret/
 docker start "container name"
 docker exec -it "container name" /bin/bash
 
-[호스트 우분투가 아니라 위의 docekr exec -it --user roon 컨테이너id /bin/bash
+[호스트 우분투가 아니라 위의 docekr exec -it --user root 컨테이너id /bin/bash
  위 명령으로 컨테이너로 접속하여 이곳에서 위의 사이트 참고하여 한글 지원 진행] 
 apt-get update
 apt-get install locales
