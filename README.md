@@ -354,3 +354,6 @@ docker run -it --name centos centos /bin/bash
 - [docker 개념] (https://myjamong.tistory.com/297)
 - [깃랩 초기 비번 생성 참고자료] : (https://oingdaddy.tistory.com/369)
 - [docker study] : (https://unpasoadelante.tistory.com/193?category=901931)
+
+- [공부한 자료1_인프런 생활코딩님 리눅스강좌] : (https://www.inflearn.com/course/%EC%83%9D%ED%99%9C%EC%BD%94%EB%94%A9-%EB%A6%AC%EB%88%85%EC%8A%A4-%EA%B0%95%EC%A2%8C/dashboard)
+- [공부한 자료2_책1. IT 인프라를 위한 Docker 2판] :
