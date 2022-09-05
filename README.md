@@ -351,7 +351,7 @@ docker run -it --name centos centos /bin/bash
   
   
   
-- docker에 sweetviz 라이브러리 사용을 위한 jupyter hub 구축 부분
+- docker에 sweetviz 라이브러리 사용을 위한 jupyter hub 구축 부분(사내에서 외부 접속할 수 있도록)
 ```
 docker pull jupyter/datascience-notebook  #관련 이미지 pull
 docker run –dit –p 30002:8888 --name user02 –h jupyter –e NB_USER=user02 –e CHOWN_HOME=yes –e GRANT_SUDO=yes –e CHOWN_EXTRA_OPTS=‘-R’ –user root jupyter/datascience-   notebook # 다음 명령 수행(이름은 user02로 함 -> 다른 사용자가 원할시 예시로 user01로하여 포트번호 30001과같은 것으로 변경 후 해당 ip로 접속하면 하나 또 구축이 된다)
