@@ -348,6 +348,27 @@ docker images  #docker 이미지 확인
 docker run -it --name centos centos /bin/bash
 ``` 
   
+  
+  
+  
+- docker에 sweetviz 라이브러리 사용을 위한 jupyter hub 구축 부분
+```
+docker pull jupyter/datascience-notebook  #관련 이미지 pull
+docker run –dit –p 30002:8888 --name user02 –h jupyter –e NB_USER=user02 –e CHOWN_HOME=yes –e GRANT_SUDO=yes –e CHOWN_EXTRA_OPTS=‘-R’ –user root jupyter/datascience-   notebook # 다음 명령 수행(이름은 user02로 함 -> 다른 사용자가 원할시 예시로 user01로하여 포트번호 30001과같은 것으로 변경 후 해당 ip로 접속하면 하나 또 구축이 된다)
+#위 명령 수행 후 docker ps –a 명령으로 이미지 올라간 것 확인 
+docker logs user02  # 이 명령으로 토큰 확인 후 인터넷망에서 http://172.28.4.244:30002 로 접속
+[이후]
+docker start user02
+docker exec –it –user root user02 /bin/bash #다음 명령으로 컨터이너에 root권한으로 접속
+pip install sweetviz   #다음 명령으로 sweetviz설치
+
+[참고문헌] 
+[서버구축명령]:https://ontheterrace.tistory.com/m/entry/%EC%A3%BC%ED%94%BC%ED%84%B0-%EB%85%B8%ED%8A%B8%EB%B6%81-%EC%84%A4%EC%B9%98
+[컨테이너 접속부분 참고]: https://soundprovider.tistory.com/entry/DockerJupyter-%EC%9B%90%EA%B2%A9-%EC%A3%BC%ED%94%BC%ED%84%B0-%EC%84%9C%EB%B2%84-Container%EB%A1%9C-    %EB%9D%84%EC%9A%B0%EA%B8%B0
+[sweetviz설치 명령 및 참고] : https://lsjsj92.tistory.com/602
+
+ ```
+  
 - [참고한 자료1. 설치 코드, 삭제] (https://jaynamm.tistory.com/entry/Install-Docker-Engine-on-CentOS7-centos7-%EB%8F%84%EC%BB%A4-%EC%84%A4%EC%B9%98)
 - [참고한 자료2. 설치코드 구글링 참고자료] (https://1mini2.tistory.com/21)
 - [docker 개념] (https://myjamong.tistory.com/297)
