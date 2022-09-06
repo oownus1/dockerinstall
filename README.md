@@ -375,6 +375,6 @@ pip install sweetviz   #다음 명령으로 sweetviz설치
 - [깃랩 초기 비번 생성 참고자료] : (https://oingdaddy.tistory.com/369)
 - [docker study] : (https://unpasoadelante.tistory.com/193?category=901931)
 
-- [공부한 자료1_인프런 생활코딩님 리눅스강좌] : (https://www.inflearn.com/course/%EC%83%9D%ED%99%9C%EC%BD%94%EB%94%A9-%EB%A6%AC%EB%88%85%EC%8A%A4-%EA%B0%95%EC%A2%8C/dashboard)
-- [공부한 자료2_책1. IT 인프라를 위한 Docker 2판] :
+- [공부한 자료1_인프런 생활코딩님 리눅스강좌] : (https://www.inflearn.com/course/%EC%83%9D%ED%99%9C%EC%BD%94%EB%94%A9-%EB%A6%AC%EB%88%85%EC%8A%A4-      %EA%B0%95%EC%A2%8C/dashboard)
+- [공부한 자료2_책1. IT 인프라를 위한 Docker 2판] : (http://www.kyobobook.co.kr/product/detailViewKor.laf?ejkGb=KOR&mallGb=KOR&barcode=9788956747903&orderClick=LAG&Kc=)
 - [jupyter 설치] : (https://ontheterrace.tistory.com/m/entry/%EC%A3%BC%ED%94%BC%ED%84%B0-%EB%85%B8%ED%8A%B8%EB%B6%81-%EC%84%A4%EC%B9%98)
