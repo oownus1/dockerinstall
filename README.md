@@ -348,7 +348,10 @@ docker images  #docker 이미지 확인
 docker run -it --name centos centos /bin/bash
 ``` 
   
-  
+- 파이썬 
+```
+
+```
   
   
 - docker에 sweetviz 라이브러리 사용을 위한 jupyter hub 구축 부분(사내에서 외부 접속할 수 있도록)
